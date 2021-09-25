@@ -1,5 +1,9 @@
+const express = require('express');
+const router = express.Router();
+
 const agService = require('./controller');
-module.exports = function (app) {
-    app.get('/api/getRcDetails', agService.getRc);
-    app.post('/api/updateRcDetails', agService.updateRc);
-};
+
+router.post('/getRcDetails', agService.getRc);
+router.post('/addNewVehicle', agService.addNewVehicle)
+
+module.exports = router;

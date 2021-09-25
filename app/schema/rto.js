@@ -1,38 +1,46 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let user = new Schema ({
-    rcId : ObjectId,
-    Name : {
+let Vehicle = new Schema ({
+    rcId : mongoose.Schema.ObjectId,
+    rcNumber : {
         type : String,
         require : true
     },
-    Mobile : {
+    name : {
         type : String,
         require : true
     },
-    Vehicle : {
+    mobile : {
         type : String,
         require : true
     },
-    Medium : {
+    pucIssue : {
         type : String,
         require : false
     },
-    Address : {
+    pucExpiry : {
         type : String,
         require : false
     },
-    PUCC : {
+    fitnessIssue : {
         type : String,
         require : false
     },
-    Insurance : {
+    fitnessExpiry : {
+        type : String,
+        require : false
+    },
+    insuranceIssue : {
+        type : String,
+        require : false
+    },
+    insuranceExpiry : {
         type : String,
         require : false
     }
 });
 
 module.exports = {
-    user
+    Vehicle
 }

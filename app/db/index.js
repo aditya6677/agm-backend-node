@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoDB = "mongodb+srv://Aditya76:Aditya123@cluster0.oj2yl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const mongoDB = "mongodb+srv://Aditya76:Aditya123@cluster0.oj2yl.mongodb.net/vehicles?retryWrites=true&w=majority";
 
 //Create connection
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, poolSize : 25 });

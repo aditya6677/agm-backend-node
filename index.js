@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
 });
 
 //Auth Middleware
-app.use('/api', auth);
+//app.use('/api', auth);
 app.use('/api/pucc', route);
 
 app.listen(port,()=>{
