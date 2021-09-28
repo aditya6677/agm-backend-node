@@ -1,37 +1,83 @@
 const VehicleModel = require('../models/index');
 
-const getRc = (req, res) => {
-    console.log(req.body.rcNumber);
-    let vehicleInfo = {
-        rcNumber: '7676',
-        name: 'Aditya',
-        pucIssue: null,
-        pucExpiry: null,
-        fitnessIssue: null,
-        fitnessExpiry: null,
-        insuranceIssue: null,
-        insuranceExpiry: null
-    }
-    let data = [];
-    data.push(vehicleInfo);
-    data.push(vehicleInfo);
-    return res.send(data);
+const getRc = async (req, res) => {
+    let vehList = await VehicleModel.findByMobOrRc(req.body.rcNumber);
+    return res.send(vehList);
 }
 
-const addNewVehicle = (req, res) => {
+const addNewVehicle = async (req, res) => {
+    let rc = req.body.info.rcNumber || null;
+    let isrc = await VehicleModel.findByRc(rc);
+
+    if (isrc && isrc.length > 0) {
+        res.json({
+            status: 404,
+            message: "RC Number Already Exist"
+        });
+        return;
+    }
+
     VehicleModel.addNewVehicle(req.body.info).then((result) => {
         return result ? res.json({
-            status : 200,
-            message : "Saved"
+            status: 200,
+            message: "Vehicle Added Successfully"
         }) : res.json({
-            status : 404,
-            message : "Saving Failed"
+            status: 404,
+            message: "Vehicle Adding Failed"
         })
     })
-    .catch((err)=>{
+        .catch((err) => {
+            res.json({
+                status: 404,
+                message: 'Vehicle Update Failed'
+            });
+            return;
+        })
+}
+
+const updateVehicle = (req, res) => {
+    let rcNumber = req.body.info.rcNumber || null;
+    
+    if (rcNumber) {
+        VehicleModel.updateVehicle(rcNumber, req.body.info)
+            .then((result) => {
+                res.json({
+                    status: 200,
+                    message: 'Vehicle Update Successfull'
+                });
+                return;
+            })
+            .catch((err) => {
+                res.json({
+                    status: 404,
+                    message: 'Vehicle Update Failed'
+                });
+                return;
+            })
+    }else{
         res.json({
-            status : 404,
-            message : 'Vehicle Update Failed'
+            status: 404,
+            message: 'Vehicle Number Invalid'
+        });
+        return;
+    }
+
+}
+
+const getRcList = (req,res) => {
+    VehicleModel.getRcList()
+    .then((result) => {
+        res.json({
+            status: 200,
+            message: 'Success',
+            info : result
+        });
+        return;
+    })
+    .catch((e)=>{
+        res.json({
+            status: 404,
+            message: 'Failed to Get List'
         });
         return;
     })
@@ -39,5 +85,7 @@ const addNewVehicle = (req, res) => {
 
 module.exports = {
     getRc,
-    addNewVehicle
+    addNewVehicle,
+    updateVehicle,
+    getRcList
 }

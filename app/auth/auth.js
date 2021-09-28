@@ -9,7 +9,7 @@ module.exports = (req,res,next) => {
         });
         return;
     }
-    jwt.verify(token,process.env.JWT_SECRET,(err,decoded)=>{
+    jwt.verify(token,'worldIsFullOfDeveloper',(err,decoded)=>{
         if(err){
             res.status(401).json({
                 status : false,

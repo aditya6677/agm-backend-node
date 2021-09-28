@@ -4,6 +4,8 @@ const router = express.Router();
 const agService = require('./controller');
 
 router.post('/getRcDetails', agService.getRc);
-router.post('/addNewVehicle', agService.addNewVehicle)
+router.post('/addNewVehicle', agService.addNewVehicle);
+router.post('/updateVehicle', agService.updateVehicle);
+router.get('/getRcList', agService.getRcList);
 
 module.exports = router;

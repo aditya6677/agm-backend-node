@@ -38,6 +38,10 @@ let Vehicle = new Schema ({
     insuranceExpiry : {
         type : String,
         require : false
+    },
+    date : {
+        type : String,
+        require : false
     }
 });
 
