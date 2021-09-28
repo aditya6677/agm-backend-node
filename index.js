@@ -4,7 +4,7 @@ const helmet = require('helmet')
 const compressor = require('compression');
 const app = express();
 const db = require('./app/db/index');
-const port = 2428;
+const port = process.env.PORT || 2428;
 
 const auth = require('./app/auth/auth');
 const route = require('./app/route');
