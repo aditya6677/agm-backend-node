@@ -7,7 +7,7 @@ const login = async(req,res) => {
     if(userId && password){
         let [userInfo] = await UserModel.userLogin(userId,password);
         if(userInfo){
-            let token = jwt.sign({username: userId} , 'worldIsFullOfDeveloper', {expiresIn: '24h'});
+            let token = jwt.sign({username: userId} , 'worldIsFullOfDeveloper');
             res.status(200).send({
                 status : 200,
                 message : "Successfull",

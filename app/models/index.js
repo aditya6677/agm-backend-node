@@ -30,8 +30,8 @@ const findByMobOrRc = (rc) => {
     ).exec();
 }
 
-const updateVehicle = (filter,update) => {
-    return VehicleModel.findOneAndUpdate({rcNumber : filter}, {...update}, {useFindAndModify: false}).exec();
+const updateVehicle = (id,update) => {
+    return VehicleModel.findOneAndUpdate({_id : id}, {...update}, {useFindAndModify: false}).exec();
 }
 
 const getRcList = () => {

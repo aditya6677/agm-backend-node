@@ -36,10 +36,10 @@ const addNewVehicle = async (req, res) => {
 }
 
 const updateVehicle = (req, res) => {
-    let rcNumber = req.body.info.rcNumber || null;
+    let id = req.body.info._id || null;
     
-    if (rcNumber) {
-        VehicleModel.updateVehicle(rcNumber, req.body.info)
+    if (id) {
+        VehicleModel.updateVehicle(id, req.body.info)
             .then((result) => {
                 res.json({
                     status: 200,
