@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "node index.js",
+    "start": "node index.js",
     "dev": "export NODE_ENV=development && nodemon index.js || true"
   },
   "author": "",
@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.13.9"
   }
 }

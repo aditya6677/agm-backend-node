@@ -33,6 +33,6 @@ app.use('/auth', userAuth);
 app.use('/api/pucc', route);
 
 app.listen(port,()=>{
-  console.log(`Running in ${process.env.NODE_ENV} mode`);
+  console.log(`Running in ${process.env.NODE_ENV || 'development'} mode`);
   console.log(`Server is listening on port ${port}`);
 });

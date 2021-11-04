@@ -1,4 +1,5 @@
 const VehicleModel = require('../models/index');
+const moment = require('moment');
 
 const getRc = async (req, res) => {
     let vehList = await VehicleModel.findByMobOrRc(req.body.rcNumber);
@@ -83,9 +84,58 @@ const getRcList = (req,res) => {
     })
 }
 
+const getInfo = async (req,res) => {
+    const tep = await VehicleModel.getTodayExpPUC();
+    let PUC = 0;
+    let FIT = 0;
+    let INS = 0;
+    let total = 0;
+    if(tep && tep.length > 0){
+        total = tep.length;
+        for(let data of tep){
+            if(data.pucExpiry){
+                let diff = moment(data.pucExpiry).diff(new Date(), 'days');
+                if(diff > 0 && diff < 7){
+                    PUC++;
+                }
+            }
+
+            if(data.fitnessExpiry){
+                let diff = moment(data.fitnessExpiry).diff(new Date(), 'days');
+                if(diff > 0 && diff < 7){
+                    FIT++;
+                }
+            }
+
+            if(data.insuranceExpiry){
+                let diff = moment(data.insuranceExpiry).diff(new Date(), 'days');
+                if(diff > 0 && diff < 7){
+                    INS++;
+                }
+            }
+        }
+    }
+
+    let result = {
+        'puc' : PUC,
+        'fit' : FIT,
+        'ins' : INS,
+        'total' : total
+    }
+
+    res.json({
+        status: 200,
+        message: 'Success',
+        info : result
+    });
+    return;
+    
+}
+
 module.exports = {
     getRc,
     addNewVehicle,
     updateVehicle,
-    getRcList
+    getRcList,
+    getInfo
 }

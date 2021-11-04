@@ -38,11 +38,16 @@ const getRcList = () => {
     return VehicleModel.find({}).exec();
 }
 
+const getTodayExpPUC = () => {
+    return VehicleModel.find({}).exec();
+}
+
 module.exports = {
     addNewVehicle,
     findByMobile,
     findByRc,
     findByMobOrRc,
     updateVehicle,
-    getRcList
+    getRcList,
+    getTodayExpPUC
 }
