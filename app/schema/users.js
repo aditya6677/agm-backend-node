@@ -6,6 +6,8 @@ var usersSchema = new Schema({
   password: String
 });
 
+usersSchema.set('timestamps', true);
+
 module.exports = {
     usersSchema
 }

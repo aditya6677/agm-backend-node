@@ -45,6 +45,8 @@ let Vehicle = new Schema ({
     }
 });
 
+Vehicle.set('timestamps', true);
+
 module.exports = {
     Vehicle
 }

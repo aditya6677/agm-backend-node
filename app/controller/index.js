@@ -90,37 +90,62 @@ const getInfo = async (req,res) => {
     let FIT = 0;
     let INS = 0;
     let total = 0;
+    let today = 0;
     if(tep && tep.length > 0){
         total = tep.length;
         for(let data of tep){
             if(data.pucExpiry){
                 let diff = moment(data.pucExpiry).diff(new Date(), 'days');
-                if(diff > 0 && diff < 7){
+                if(diff >= 0 && diff <= 7){
                     PUC++;
                 }
             }
 
             if(data.fitnessExpiry){
                 let diff = moment(data.fitnessExpiry).diff(new Date(), 'days');
-                if(diff > 0 && diff < 7){
+                if(diff >= 0 && diff <= 7){
                     FIT++;
                 }
             }
 
             if(data.insuranceExpiry){
                 let diff = moment(data.insuranceExpiry).diff(new Date(), 'days');
-                if(diff > 0 && diff < 7){
+                if(diff >= 0 && diff <= 7){
                     INS++;
+                }
+            }
+
+            if(data.date){
+                let diff = moment(data.date).diff(new Date(), 'days');
+                if(diff === 0){
+                    today++;
+                }
+            }
+
+            if(data.createdAt){
+                let diff = moment(data.createdAt).diff(new Date(), 'days');
+                if(diff === 0){
+                    today++;
+                }
+            }
+
+            if(data.modifiedAt){
+                let diff = moment(data.modifiedAt).diff(new Date(), 'days');
+                if(diff === 0){
+                    today++;
                 }
             }
         }
     }
 
+
+
     let result = {
         'puc' : PUC,
         'fit' : FIT,
         'ins' : INS,
-        'total' : total
+        'total' : total,
+        'today' : today
     }
 
     res.json({
