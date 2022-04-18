@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const mongoDB = "mongodb+srv://Aditya76:Aditya123@cluster0.oj2yl.mongodb.net/vehicles?retryWrites=true&w=majority";
-
+const autoIncrement = require('mongoose-auto-increment');
 //Create connection
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, poolSize : 25 });
 mongoose.set('bufferCommands', false);
