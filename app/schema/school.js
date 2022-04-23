@@ -44,6 +44,10 @@ let Student = new Schema ({
     dob : {
         type : String,
         require : false
+    },
+    isDeleted : {
+        type : Boolean,
+        default : false
     }
 })
 

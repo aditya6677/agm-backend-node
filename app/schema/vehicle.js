@@ -42,6 +42,10 @@ let Vehicle = new Schema ({
     date : {
         type : String,
         require : false
+    },
+    isDeleted : {
+        type : Boolean,
+        default : false
     }
 });
 

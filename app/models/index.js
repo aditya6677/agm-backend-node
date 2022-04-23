@@ -42,6 +42,18 @@ const getTodayExpPUC = () => {
     return VehicleModel.find({}).exec();
 }
 
+const getPucList = () => {
+    return VehicleModel.find({"pucExpiry":{$ne:null}}).exec();
+}
+
+const getFitnessList = () => {
+    return VehicleModel.find({"fitnessExpiry":{$ne:null}}).exec();
+}
+
+const getInsuranceList = () => {
+    return VehicleModel.find({"insuranceExpiry":{$ne:null}}).exec();
+}
+
 module.exports = {
     addNewVehicle,
     findByMobile,
@@ -49,5 +61,8 @@ module.exports = {
     findByMobOrRc,
     updateVehicle,
     getRcList,
-    getTodayExpPUC
+    getTodayExpPUC,
+    getPucList,
+    getFitnessList,
+    getInsuranceList
 }
