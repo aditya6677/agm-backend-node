@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet')
 const compressor = require('compression');
+const https = require("https");
+const fs = require("fs");
 const app = express();
 const db = require('./app/db/index');
 const port = process.env.PORT || 2428;
@@ -32,7 +34,15 @@ app.use('/api', auth);
 app.use('/auth', userAuth);
 app.use('/api/pucc', route);
 
-app.listen(port,()=>{
+const server = https.createServer(
+    {
+      key: fs.readFileSync("./key.pem"),
+      cert: fs.readFileSync("./cert.pem"),
+    },
+    app
+)
+
+server.listen(port,()=>{
   console.log(`Running in ${process.env.NODE_ENV || 'development'} mode`);
   console.log(`Server is listening on port ${port}`);
 });
