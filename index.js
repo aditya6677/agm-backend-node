@@ -36,8 +36,8 @@ app.use('/api/pucc', route);
 
 const server = https.createServer(
     {
-      key: fs.readFileSync("./key.pem"),
-      cert: fs.readFileSync("./cert.pem"),
+      key: fs.readFileSync("/etc/letsencrypt/live/shriagrahari.in/privkey.pem"),
+      cert: fs.readFileSync("/etc/letsencrypt/live/shriagrahari.in/cert.pem"),
     },
     app
 )
